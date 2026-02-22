@@ -1,4 +1,4 @@
-# Lab 01: Git Archaeology — kto tu naśmiecił?
+# Lab 01: Git Archaeology - kto tu naśmiecił?
 
 ## Czy wiesz, że...
 
@@ -6,7 +6,7 @@ Według badań (które właśnie wymyśliłem), 73% commitów w projektach open-
 
 ## Kontekst
 
-Każdy projekt open-source to historia opowiedziana commitami. `git log` to nie jest nudna lista zmian — to kronika: kto, kiedy, co i (czasem) dlaczego. Umiejętność czytania tej historii to podstawa pracy z cudzym kodem i fundamentalna umiejętność software archaeology.
+Każdy projekt open-source to historia opowiedziana commitami. `git log` to nie jest nudna lista zmian - to kronika: kto, kiedy, co i (czasem) dlaczego. Umiejętność czytania tej historii to podstawa pracy z cudzym kodem i fundamentalna umiejętność software archaeology.
 
 W realnej pracy inżyniera analiza historii repozytorium przydaje się do: szukania winnego (git blame, ale z klasą), zrozumienia decyzji projektowych, szacowania aktywności projektu przed wyborem zależności, albo po prostu odpowiedzi na pytanie "kto to napisał i o czym myślał".
 
@@ -68,7 +68,7 @@ git blame README.md
 git blame --line-porcelain README.md | grep "^author " | sort | uniq -c | sort -rn
 ```
 
-**Krok 4:** Odpowiedz na pytania (zapiszcie odpowiedzi — przydadzą się do oddania):
+**Krok 4:** Odpowiedz na pytania (zapiszcie odpowiedzi - przydadzą się do oddania):
 
 1. Ile commitów ma projekt?
 2. Kto jest autorem największej liczby commitów? Jaki % całości to stanowi?
@@ -217,13 +217,13 @@ NAJDŁUŻSZA PRZERWA: 47 dni (2023-08-12 → 2023-09-28)
 Raport zapisany do: report.csv
 ```
 
-### Zadanie 3: Wizualizacja (30 min) — dla ambitnych
+### Zadanie 3: Wizualizacja (30 min) - dla ambitnych
 
 Liczby to jedno, ale wykres to zupełnie inna liga perswazji. Rozszerzcie skrypt (lub napiszcie oddzielny) o wizualizację aktywności projektu w czasie.
 
 **Do zrobienia:**
 - Wykres słupkowy/liniowy: liczba commitów na miesiąc (oś X = miesiąc, oś Y = liczba commitów)
-- Bonus: wykres heatmap (dzień tygodnia × godzina dnia) — kiedy developerzy commitują?
+- Bonus: wykres heatmap (dzień tygodnia × godzina dnia) - kiedy developerzy commitują?
 
 ```python
 import matplotlib.pyplot as plt
@@ -247,10 +247,10 @@ plt.show()
 
 W swoim unikatowym branchu `lab01_nazwisko1_nazwisko2`:
 
-1. **`git_archaeology.py`** — działający skrypt z zadania 2
-2. **`report.csv`** — wygenerowany raport dla wybranego projektu
-3. **`answers.md`** — odpowiedzi na 5 pytań z zadania 1
-4. *(opcjonalnie)* **`activity_chart.png`** — wykres z zadania 3
+1. **`git_archaeology.py`** - działający skrypt z zadania 2
+2. **`report.csv`** - wygenerowany raport dla wybranego projektu
+3. **`answers.md`** - odpowiedzi na 5 pytań z zadania 1
+4. *(opcjonalnie)* **`activity_chart.png`** - wykres z zadania 3
 
 ## Kryteria oceny
 
@@ -267,7 +267,7 @@ W swoim unikatowym branchu `lab01_nazwisko1_nazwisko2`:
 O: Tak, ale musi mieć co najmniej 500 commitów i co najmniej 2 lata historii. Inaczej analiza będzie nudna.
 
 **P: Mój skrypt się wysypuje na projekcie z milionem commitów.**
-O: Linux kernel ma 1M+ commitów — zacznij od czegoś mniejszego. Albo ogranicz `git log` flagą `--since="2020-01-01"`.
+O: Linux kernel ma 1M+ commitów - zacznij od czegoś mniejszego. Albo ogranicz `git log` flagą `--since="2020-01-01"`.
 
 **P: `git log` zwraca dziwne znaki / encoding się sypie.**
 O: Dodaj `encoding="utf-8", errors="replace"` do `subprocess.run()`.
@@ -287,4 +287,4 @@ O: Tak, ale daj znać prowadzącemu na początku zajęć.
 - [matplotlib quickstart](https://matplotlib.org/stable/tutorials/introductory/quick_start.html)
 
 ---
-*"Daj mi sześć godzin na ścięcie drzewa, a pierwsze cztery spędzę na ostrzeniu siekiery."* — Abraham Lincoln (chyba)
+*"Daj mi sześć godzin na ścięcie drzewa, a pierwsze cztery spędzę na ostrzeniu siekiery."* - Abraham Lincoln (chyba)
