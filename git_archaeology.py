@@ -7,6 +7,10 @@ from collections import Counter, defaultdict
 from datetime import datetime
 from pathlib import Path
 
+import matplotlib.pyplot as plt
+import matplotlib
+import numpy as np
+
 
 def run_git_log(repo_path: str) -> list[dict]:
     """Run git log and parse output into list of commit dicts."""
@@ -79,7 +83,6 @@ def longest_gap(commits: list[dict]) -> tuple[int, str, str]:
             end_date = dates[i].strftime("%Y-%m-%d")
     return (max_gap, start_date, end_date)
 
-
 def save_report_csv(filepath: str, authors, activity, gap):
     """Save report to CSV file."""
     
@@ -103,6 +106,31 @@ def save_report_csv(filepath: str, authors, activity, gap):
         writer.writerow(["=== NAJDŁUŻSZA PRZERWA ==="])
         writer.writerow(["Dni", "Od", "Do"])
         writer.writerow([gap_days, gap_start, gap_end])
+
+
+
+def plot_monthly_activity(activity: dict[str, int], output_path: str = "activity_chart.png"):
+    """Generate a bar chart of commits per month."""
+    months = sorted(activity.keys())
+    counts = [activity[m] for m in months]
+
+    fig, ax = plt.subplots(figsize=(14, 6))
+    ax.bar(range(len(months)), counts, color="#4c8bf5", edgecolor="white", linewidth=0.5)
+    ax.set_xticks(range(len(months)))
+    ax.set_xticklabels(months, rotation=45, ha="right", fontsize=8)
+    ax.set_xlabel("Miesiąc")
+    ax.set_ylabel("Liczba commitów")
+    ax.set_title("Aktywność projektu — liczba commitów na miesiąc")
+    ax.grid(axis="y", alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(output_path, dpi=150)
+    plt.close(fig)
+    print(f"Wykres aktywności zapisany do: {output_path}")
+
+
+def generate_charts(commits: list[dict], activity: dict[str, int], output_dir: str = "."):
+    """Generate all charts."""
+    plot_monthly_activity(activity, f"{output_dir}/activity_chart.png")
 
 
 def main():
@@ -137,6 +165,9 @@ def main():
     save_report_csv("report.csv", authors, activity, (gap_days, gap_start, gap_end))
     print(f"\nRaport zapisany do: report.csv")
 
+    output_dir = str(Path(repo_path).resolve().parent) if repo_path != "." else "."
+    generate_charts(commits, activity, output_dir=".")
 
 if __name__ == "__main__":
     main()
+    
