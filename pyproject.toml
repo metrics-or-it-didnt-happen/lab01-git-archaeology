@@ -1,0 +1,16 @@
+[project]
+name = "lab01-git-archaeology"
+version = "0.1.0"
+description = "Git Archaeology - mining commit history for fun and metrics."
+requires-python = ">=3.12"
+dependencies = [
+    "altair>=5.5",
+    "vl-convert-python>=1.7",
+]
+
+[project.scripts]
+git-archaeology = "git_archaeology:main"
+
+[tool.pyright]
+reportUnknownMemberType = false
+reportUnknownArgumentType = false
